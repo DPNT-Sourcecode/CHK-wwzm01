@@ -29,12 +29,12 @@ def find_total_values(SKUs):
     
 def work_out_cost(product_amounts):
     total_cost = 0
-    if product_amounts["A"] >= 3: # if any special offers for A
-        total_cost += int(product_amounts["A"]/3) * 130 #work out how many multiples of 3 for A which requires special price
-        total_cost += product_amounts["A"] % 3 * 50 #also add any individual As on top
+    if product_amounts["A"] >= 5: # if any special offers for A
+        total_cost += int(product_amounts["A"]/5) * 200 #work out how many multiples of 3 for A which requires special price
+        product_amounts["A"] = product_amounts["A"] % 5
+        total_cost += special_offer_A(product_amounts)
     else:
-        total_cost += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
-
+        total_cost += special_offer_A(product_amounts)
     if product_amounts["B"] >= 2: # if any special offers for B
         total_cost += int(product_amounts["B"]/2) * 45 #work out how many multiples of 2 for B which requires special price
         total_cost += product_amounts["B"] % 2 * 30 #also add any individual Bs on top
@@ -44,10 +44,21 @@ def work_out_cost(product_amounts):
     total_cost += product_amounts["D"] * 15 # add any Cs and Ds
     return total_cost  
     
+def special_offer_A(product_amounts):
+    cost_A = 0
+    if product_amounts["A"] >= 3: # if any special offers for A
+        cost_A += int(product_amounts["A"]/3) * 130 #work out how many multiples of 3 for A which requires special price
+        cost_A += product_amounts["A"] % 3 * 50 #also add any individual As on top
+    else:
+        cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
+    return cost_A
 
-print(main("ABCD")) #should output 115
-print(main("ABBBCD")) #should output 160
-print(main("AAABCD")) #should output 195
-print(main("AAAABCD")) #should output 245
-print(main("AAABBCD")) #should output 210
-print(main("AAAEBBCD")) #should output -1
+print(main("AAAAAAAAAA"))
+
+# print(main("ABCD")) #should output 115
+# print(main("ABBBCD")) #should output 160
+# print(main("AAABCD")) #should output 195
+# print(main("AAAABCD")) #should output 245
+# print(main("AAABBCD")) #should output 210
+# print(main("AAAEBBCD")) #should output -1
+
