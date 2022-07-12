@@ -35,13 +35,16 @@ def work_out_cost(product_amounts):
         total_cost += special_offer_A(product_amounts)
     else:
         total_cost += special_offer_A(product_amounts)
+    if product_amounts["E"] >= 2: # if more than 2 Es
+        product_amounts["B"] = max(product_amounts["B"] - int(product_amounts["E"]/2) , 0) #subtract the amount of free Bs from total amount of Bs, but can't go below 0 Bs
     if product_amounts["B"] >= 2: # if any special offers for B
         total_cost += int(product_amounts["B"]/2) * 45 #work out how many multiples of 2 for B which requires special price
         total_cost += product_amounts["B"] % 2 * 30 #also add any individual Bs on top
     else:
         total_cost += product_amounts["B"] * 30 #if less than 2 Bs, just work out individual 
     total_cost += product_amounts["C"] * 20 
-    total_cost += product_amounts["D"] * 15 # add any Cs and Ds
+    total_cost += product_amounts["D"] * 15 
+    total_cost += product_amounts["E"] * 40 # add any Cs, Ds, Es
     return total_cost  
     
 def special_offer_A(product_amounts):
@@ -53,12 +56,18 @@ def special_offer_A(product_amounts):
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
 
-print(main("AAAAAAAAAA"))
+print(main("AAAA"))
+print(main("AAAAA"))
+print(main("AAAAAAAA"))
+print(main("AAAAAAAAAAA"))
+print(main("ABCD")) #should output 115
+print(main("ABBBCD")) #should output 160
+print(main("AAABCD")) #should output 195
+print(main("AAAABCD")) #should output 245
+print(main("AAABBCD")) #should output 210
+print(main("AAABBECD")) #should output 250
+print(main("AAABBBECD")) #should output 280
+print(main("AAABBEECD")) #should output 290
+print(main("AAAEBBZCD")) #should output -1
 
-# print(main("ABCD")) #should output 115
-# print(main("ABBBCD")) #should output 160
-# print(main("AAABCD")) #should output 195
-# print(main("AAAABCD")) #should output 245
-# print(main("AAABBCD")) #should output 210
-# print(main("AAAEBBCD")) #should output -1
 
