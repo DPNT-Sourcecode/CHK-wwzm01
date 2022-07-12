@@ -1,3 +1,4 @@
+
 def main(skus):
     product_amounts = find_total_values(skus) #fn finds the amount of each product
     if product_amounts == -1: 
@@ -43,6 +44,9 @@ def work_out_cost(product_amounts):
     total_cost += product_amounts["C"] * 20 
     total_cost += product_amounts["D"] * 15 
     total_cost += product_amounts["E"] * 40 # add any Cs, Ds, Es
+    if product_amounts["F"] >= 3:
+        product_amounts["F"] = (product_amounts["F"] - int(product_amounts["F"]/2))
+    total_cost += product_amounts["F"] * 10
     return total_cost  
     
 def special_offer_A(product_amounts):
@@ -58,13 +62,15 @@ print(main("AAAA"))
 print(main("AAAAA"))
 print(main("AAAAAAAA"))
 print(main("AAAAAAAAAAA"))
-print(main("ABCD")) #should output 115
-print(main("ABBBCD")) #should output 160
-print(main("AAABCD")) #should output 195
-print(main("AAAABCD")) #should output 245
-print(main("AAABBCD")) #should output 210
-print(main("AAABBECD")) #should output 250
-print(main("AAABBBECD")) #should output 280
-print(main("AAABBBEEEEEEEEECD")) #should output 525
-print(main("AAAEBBZCD")) #should output -1
+print(main("FFFF"))
+# print(main("ABCD")) #should output 115
+# print(main("ABBBCD")) #should output 160
+# print(main("AAABCD")) #should output 195
+# print(main("AAAABCD")) #should output 245
+# print(main("AAABBCD")) #should output 210
+# print(main("AAABBECD")) #should output 250
+# print(main("AAABBBECD")) #should output 280
+# print(main("AAABBBEEEEEEEEECD")) #should output 525
+# print(main("AAAEBBZCD")) #should output -1
+
 
