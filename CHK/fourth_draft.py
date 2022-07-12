@@ -3,15 +3,19 @@ def main(skus):
     product_amounts = find_total_values(skus) #fn finds the amount of each product
     if product_amounts == -1: 
         return -1 #returns -1 if illegal input is found
-    total_cost = work_out_cost(product_amounts) #fn works out the total checkout value of the items
+    # total_cost = work_out_cost(product_amounts) #fn works out the total checkout value of the items
     return total_cost
 
 
 def find_total_values(skus):
-    product_amounts = {"A":0, "B":0, "C":0, "D":0, "E":0, "F":0} #create a running total of the total amount of each item in basket
+    products = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    product_amounts = {} #create a running total of the total amount of each item in basket
     for s in skus:
-        if s in product_amounts:
-            product_amounts[s] += 1
+        if s in products:
+            if s in product_amounts:
+                product_amounts[s] += 1
+            else:
+                product_amounts[s] = 1
         else:
             return -1   #if an incorrect input has been entered return -1
     return product_amounts
@@ -53,13 +57,14 @@ print(main("AAAAA"))
 print(main("AAAAAAAA"))
 print(main("AAAAAAAAAAA"))
 print(main("FFFFFFFF"))
-# print(main("ABCD")) #should output 115
-# print(main("ABBBCD")) #should output 160
-# print(main("AAABCD")) #should output 195
-# print(main("AAAABCD")) #should output 245
-# print(main("AAABBCD")) #should output 210
-# print(main("AAABBECD")) #should output 250
-# print(main("AAABBBECD")) #should output 280
-# print(main("AAABBBEEEEEEEEECD")) #should output 525
-# print(main("AAAEBBZCD")) #should output -1
+print(main("ABCD")) #should output 115
+print(main("ABBBCD")) #should output 160
+print(main("AAABCD")) #should output 195
+print(main("AAAABCD")) #should output 245
+print(main("AAABBCD")) #should output 210
+print(main("AAABBECD")) #should output 250
+print(main("AAABBBECD")) #should output 280
+print(main("AAABBBEEEEEEEEECD")) #should output 525
+print(main("AAAEBBZCD")) #should output -1
+
 
