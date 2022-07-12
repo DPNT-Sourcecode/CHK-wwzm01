@@ -5,5 +5,3 @@ def compute(x, y):
         return result #return the result
     else:
         return "One or both integers did not fall within the parameters" #return error message
-
-
