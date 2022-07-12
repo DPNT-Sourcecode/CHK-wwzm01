@@ -48,4 +48,3 @@ print(main("AAABCD")) #should output 195
 print(main("AAAABCD")) #should output 245
 print(main("AAABBCD")) #should output 210
 print(main("AAAEBBCD")) #should output -1
-

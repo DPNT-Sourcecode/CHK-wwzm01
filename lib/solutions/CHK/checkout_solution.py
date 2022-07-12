@@ -59,4 +59,3 @@ def special_offer_A(product_amounts):
     else:
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
-
