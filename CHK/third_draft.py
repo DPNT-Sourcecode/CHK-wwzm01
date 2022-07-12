@@ -45,7 +45,7 @@ def work_out_cost(product_amounts):
     total_cost += product_amounts["D"] * 15 
     total_cost += product_amounts["E"] * 40 # add any Cs, Ds, Es
     if product_amounts["F"] >= 3:
-        product_amounts["F"] = (product_amounts["F"] - int(product_amounts["F"]/2))
+        product_amounts["F"] = (product_amounts["F"] - int(product_amounts["F"]/3))
     total_cost += product_amounts["F"] * 10
     return total_cost  
     
@@ -62,7 +62,7 @@ print(main("AAAA"))
 print(main("AAAAA"))
 print(main("AAAAAAAA"))
 print(main("AAAAAAAAAAA"))
-print(main("FFFF"))
+print(main("FFFFFFFF"))
 # print(main("ABCD")) #should output 115
 # print(main("ABBBCD")) #should output 160
 # print(main("AAABCD")) #should output 195
@@ -72,3 +72,4 @@ print(main("FFFF"))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
