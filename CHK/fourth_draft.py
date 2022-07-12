@@ -10,18 +10,8 @@ def main(skus):
 def find_total_values(skus):
     product_amounts = {"A":0, "B":0, "C":0, "D":0, "E":0, "F":0} #create a running total of the total amount of each item in basket
     for s in skus:
-        if s == "A":
-            product_amounts["A"] += 1
-        elif s == "B":
-            product_amounts["B"] += 1
-        elif s == "C":
-            product_amounts["C"] += 1
-        elif s == "D":
-            product_amounts["D"] += 1  
-        elif s == "E":
-            product_amounts["E"] += 1  
-        elif s == "F":
-            product_amounts["F"] += 1   #here we add 1 on to the running total for each item in the basket
+        if s in product_amounts:
+            product_amounts[s] += 1
         else:
             return -1   #if an incorrect input has been entered return -1
     return product_amounts
@@ -72,3 +62,4 @@ print(main("FFFFFFFF"))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
