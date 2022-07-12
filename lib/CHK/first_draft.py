@@ -44,9 +44,8 @@ def work_out_cost(product_amounts):
     
 
 print(main("ABCD")) #should output 115
+print(main("ABBBCD")) #should output 160
 print(main("AAABCD")) #should output 195
 print(main("AAAABCD")) #should output 245
 print(main("AAABBCD")) #should output 210
 print(main("AAAEBBCD")) #should output -1
-
-
