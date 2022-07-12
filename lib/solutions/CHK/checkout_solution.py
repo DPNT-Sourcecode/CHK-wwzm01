@@ -11,25 +11,23 @@ def checkout(skus):
 
 
 def find_total_values(skus):
-    a = 0
-    b = 0
-    c = 0
-    d = 0 
-    e = 0 #create a running total of the total amount of each item in basket
+    product_amounts = {"A":0, "B":0, "C":0, "D":0, "E":0, "F":0} #create a running total of the total amount of each item in basket
     for s in skus:
         if s == "A":
-            a += 1
+            product_amounts["A"] += 1
         elif s == "B":
-            b += 1
+            product_amounts["B"] += 1
         elif s == "C":
-            c += 1
+            product_amounts["C"] += 1
         elif s == "D":
-            d += 1  
+            product_amounts["D"] += 1  
         elif s == "E":
-            e += 1   #here we add 1 on to the running total for each item in the basket
+            product_amounts["E"] += 1  
+        elif s == "F":
+            product_amounts["F"] += 1   #here we add 1 on to the running total for each item in the basket
         else:
             return -1   #if an incorrect input has been entered return -1
-    return {"A":a, "B":b, "C":c, "D":d, "E":e}
+    return product_amounts
     
 def work_out_cost(product_amounts):
     total_cost = 0
@@ -49,6 +47,9 @@ def work_out_cost(product_amounts):
     total_cost += product_amounts["C"] * 20 
     total_cost += product_amounts["D"] * 15 
     total_cost += product_amounts["E"] * 40 # add any Cs, Ds, Es
+    if product_amounts["F"] >= 3:
+        product_amounts["F"] = (product_amounts["F"] - int(product_amounts["F"]/3))
+    total_cost += product_amounts["F"] * 10
     return total_cost  
     
 def special_offer_A(product_amounts):
@@ -59,3 +60,4 @@ def special_offer_A(product_amounts):
     else:
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
+
