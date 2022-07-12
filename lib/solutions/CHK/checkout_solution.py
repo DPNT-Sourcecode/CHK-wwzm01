@@ -44,4 +44,3 @@ def work_out_cost(product_amounts):
     total_cost += product_amounts["C"] * 20 
     total_cost += product_amounts["D"] * 15 # add any Cs and Ds
     return total_cost  
-
