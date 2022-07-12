@@ -20,7 +20,7 @@ def find_total_values(skus):
             return -1   #if an incorrect input has been entered return -1
     for p in products:
         if p not in product_amounts:
-            product_amounts[p] = 0
+            product_amounts[p] = 0 #add all the products that have not been found yet with amount 0
     return product_amounts
     
 def work_out_cost(product_amounts):
@@ -55,20 +55,28 @@ def special_offer_A(product_amounts):
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
 
-print(main("AAAA"))
-print(main("AAAAA"))
-print(main("AAAAAAAA"))
-print(main("AAAAAAAAAAA"))
-print(main("FFFFFFFF"))
-print(main("ABCD")) #should output 115
-print(main("ABBBCD")) #should output 160
-print(main("AAABCD")) #should output 195
-print(main("AAAABCD")) #should output 245
-print(main("AAABBCD")) #should output 210
-print(main("AAABBECD")) #should output 250
-print(main("AAABBBECD")) #should output 280
-print(main("AAABBBEEEEEEEEECD")) #should output 525
-print(main("AAAEBBZCD")) #should output -1
+def special_offer(product, product_amounts, special_offer, product_price, special_price):
+    cost = 0
+    if product_amounts[product] >= special_offer: # if any special offers for A
+        cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of 3 for A which requires special price
+        cost += product_amounts[product] % special_offer * product_price #also add any individual As on top
+    else:
+        cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+    return cost
 
+print(special_offer("A", {"A":3}, 5, 50, 120))
 
-
+# print(main("AAAA"))
+# print(main("AAAAA"))
+# print(main("AAAAAAAA"))
+# print(main("AAAAAAAAAAA"))
+# print(main("FFFFFFFF"))
+# print(main("ABCD")) #should output 115
+# print(main("ABBBCD")) #should output 160
+# print(main("AAABCD")) #should output 195
+# print(main("AAAABCD")) #should output 245
+# print(main("AAABBCD")) #should output 210
+# print(main("AAABBECD")) #should output 250
+# print(main("AAABBBECD")) #should output 280
+# print(main("AAABBBEEEEEEEEECD")) #should output 525
+# print(main("AAAEBBZCD")) #should output -1
