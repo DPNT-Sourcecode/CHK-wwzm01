@@ -67,7 +67,8 @@ print(main("AAAABCD")) #should output 245
 print(main("AAABBCD")) #should output 210
 print(main("AAABBECD")) #should output 250
 print(main("AAABBBECD")) #should output 280
-print(main("AAABBEECD")) #should output 290
+print(main("AAABBBEEEEEEEEECD")) #should output 525
 print(main("AAAEBBZCD")) #should output -1
+
 
 
