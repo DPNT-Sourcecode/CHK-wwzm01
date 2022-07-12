@@ -18,6 +18,9 @@ def find_total_values(skus):
                 product_amounts[s] = 1
         else:
             return -1   #if an incorrect input has been entered return -1
+    for p in products:
+        if p not in product_amounts:
+            product_amounts[p] = 0
     return product_amounts
     
 def work_out_cost(product_amounts):
@@ -66,5 +69,6 @@ print(main("AAABBECD")) #should output 250
 print(main("AAABBBECD")) #should output 280
 print(main("AAABBBEEEEEEEEECD")) #should output 525
 print(main("AAAEBBZCD")) #should output -1
+
 
 
