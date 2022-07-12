@@ -64,7 +64,7 @@ def special_offer(product, product_amounts, special_offer, product_price, specia
         cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
 
-print(special_offer("A", {"A":3}, 5, 50, 120))
+print(special_offer("A", {"A":10}, 3, 50, 130))
 
 # print(main("AAAA"))
 # print(main("AAAAA"))
@@ -80,3 +80,4 @@ print(special_offer("A", {"A":3}, 5, 50, 120))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
