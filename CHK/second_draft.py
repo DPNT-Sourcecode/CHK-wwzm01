@@ -1,18 +1,18 @@
-def main(SKUs):
-    product_amounts = find_total_values(SKUs) #fn finds the amount of each product
+def main(skus):
+    product_amounts = find_total_values(skus) #fn finds the amount of each product
     if product_amounts == -1: 
         return -1 #returns -1 if illegal input is found
     total_cost = work_out_cost(product_amounts) #fn works out the total checkout value of the items
     return total_cost
 
 
-def find_total_values(SKUs):
+def find_total_values(skus):
     a = 0
     b = 0
     c = 0
     d = 0 
     e = 0 #create a running total of the total amount of each item in basket
-    for s in SKUs:
+    for s in skus:
         if s == "A":
             a += 1
         elif s == "B":
@@ -69,6 +69,7 @@ print(main("AAABBECD")) #should output 250
 print(main("AAABBBECD")) #should output 280
 print(main("AAABBBEEEEEEEEECD")) #should output 525
 print(main("AAAEBBZCD")) #should output -1
+
 
 
 
