@@ -85,22 +85,41 @@ def special_offer_for_multiple(product_amounts, product_prices, multiple, price)
         amount_to_subtract = multiple_amount * multiple
 
         #now we need to subtract multiple_amount items from the products in the product_amounts dict, in order of highest cost first
-        if amount_to_subtract > product_amounts['Z']:
+
+        if amount_to_subtract >= product_amounts['Z']:
             amount_to_subtract -= product_amounts['Z']
             product_amounts['Z'] = 0
-            if amount_to_subtract > (product_amounts['S'] + product_amounts['T'] + product_amounts['Y']):
-                amount_to_subtract -= (product_amounts['S'] + product_amounts['T'] + product_amounts['Y'])
+            if amount_to_subtract >= product_amounts['S']:
+                amount_to_subtract -= product_amounts['S']
                 product_amounts['S'] = 0
-                product_amounts['T'] = 0
-                product_amounts['Y'] = 0
-                if amount_to_subtract > 0:
-                    product_amounts['X'] -= amount_to_subtract
+                if amount_to_subtract >= product_amounts['T']:
+                    amount_to_subtract -= product_amounts['T']
+                    product_amounts['T'] = 0
+                    if amount_to_subtract >= product_amounts['Y']:
+                        amount_to_subtract -= product_amounts['Y']
+                        product_amounts['Y'] = 0
+                        if amount_to_subtract >= product_amounts['X']:
+                            amount_to_subtract -= product_amounts['X']
+                            product_amounts['X'] = 0
+                        else:
+                            product_amounts['X'] -= amount_to_subtract
+                    else:
+                        product_amounts['Y'] -= amount_to_subtract
+                else:
+                    product_amounts['T'] -= amount_to_subtract
             else:
+                product_amounts['S'] -= amount_to_subtract
+        else:
+            product_amounts['Z'] -= amount_to_subtract
+
+
+
+
+
                 
                 
 
 
-    pass   
 
 print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}))
 
@@ -148,3 +167,4 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
+
