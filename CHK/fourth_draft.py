@@ -1,17 +1,25 @@
 
 def main(skus):
+    #catologue of product prices
     product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
     "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
-    product_amounts = find_total_values(skus, product_prices) #fn finds the amount of each product
+
+    #fn finds the amount of each product
+    product_amounts = find_total_values(skus, product_prices) 
+
+    #returns -1 if illegal input is found
     if product_amounts == -1: 
-        return -1 #returns -1 if illegal input is found
-    total_cost = work_out_cost(product_amounts, product_prices) #fn works out the total checkout value of the items
+        return -1 
+
+    #fn works out the total checkout value of the items
+    total_cost = work_out_cost(product_amounts, product_prices) 
     return total_cost
 
 
 def find_total_values(skus, product_prices):
 
-    product_amounts = {} #create a running total of the total amount of each item in basket
+    #create a running total of the total amount of each item in basket
+    product_amounts = {} 
     for s in skus:
         if s in product_prices:
             if s in product_amounts:
@@ -35,17 +43,24 @@ def find_total_values(skus, product_prices):
     
 
 def buy_get_free(product, product_amounts, buy, get_free):
+    #do we get the same product free as we bought?
     if product==get_free:
+
+        #does the offer apply to the amount
         if product_amounts[product] >= buy+1:
+            #subtract the free amount
             product_amounts[product] = (product_amounts[product] - int(product_amounts[product]/(buy+1)))
 
     else:
+        #free product different from bought product
+        #subtract free amount from other product
         product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/buy) , 0)
     return product_amounts
 
 
 def work_out_cost(product_amounts, product_prices):
     total_cost = 0
+    # here we total up the special offers first 
     total_cost += special_offer_for("A", product_amounts, product_prices["A"], 5, 200, 3, 130)
     total_cost += special_offer_for("B", product_amounts, product_prices["B"], 2, 45)
     total_cost += special_offer_for("H", product_amounts, product_prices["H"], 10, 80, 5, 45)
@@ -54,6 +69,8 @@ def work_out_cost(product_amounts, product_prices):
     total_cost += special_offer_for("Q", product_amounts, product_prices["Q"], 3, 80)
     total_cost += special_offer_for("V", product_amounts, product_prices["V"], 3, 130, 2, 90)
     product_done = 'ABHKPQV'
+
+    # then we can simple add up the totals of the remaining products
     for p in product_amounts:
         if p not in product_done:
             total_cost += product_amounts[p] * product_prices[p] 
@@ -103,9 +120,10 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # print(main("AAAABCD")) #should output 245
 # print(main("AAABBCD")) #should output 210
 # print(main("AAABBECD")) #should output 250
-# print(main("AAABBBECD")) #should output 280
-print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
-print(main("AAAEBB2CD")) #should output -1
+# # print(main("AAABBBECD")) #should output 280
+# print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
+# print(main("AAAEBB2CD")) #should output -1
+
 
 
 
