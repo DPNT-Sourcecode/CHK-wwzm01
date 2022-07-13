@@ -55,7 +55,7 @@ def special_offer_A(product_amounts):
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
 
-def special_offer(product, product_amounts, special_offer, product_price, special_price):
+def special_offer_for_price(product, product_amounts, special_offer, product_price, special_price):
     cost = 0
     if product_amounts[product] >= special_offer: # if any special offers for A
         cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of 3 for A which requires special price
@@ -63,6 +63,9 @@ def special_offer(product, product_amounts, special_offer, product_price, specia
     else:
         cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
+
+def buy_get_free(product, product_amounts, special_offer, product_price, buy, get_free):
+    product_amounts[product] = (product_amounts[product] - int(product_amounts["F"]/3))
 
 print(special_offer("A", {"A":10}, 3, 50, 130))
 
@@ -80,4 +83,3 @@ print(special_offer("A", {"A":10}, 3, 50, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
-
