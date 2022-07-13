@@ -62,7 +62,7 @@ print(main("AAAA"))
 print(main("AAAAA"))
 print(main("AAAAAAAA"))
 print(main("AAAAAAAAAAA"))
-print(main("FFFFFFFF"))
+print(main("FFFFF"))
 # print(main("ABCD")) #should output 115
 # print(main("ABBBCD")) #should output 160
 # print(main("AAABCD")) #should output 195
@@ -72,3 +72,4 @@ print(main("FFFFFFFF"))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+

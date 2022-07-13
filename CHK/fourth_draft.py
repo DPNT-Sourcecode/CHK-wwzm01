@@ -36,7 +36,8 @@ def buy_get_free(product, product_amounts, buy, get_free):
             product_amounts[product] = (product_amounts[product] - int(product_amounts[product]/buy))
 
     else:
-        product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/buy) , 0)
+        if product_amounts[product] >= buy+1:
+            product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/(buy+1)) , 0)
     return product_amounts
 
 print(buy_get_free("A", {"A":5, "Q":3}, 2, "A"))
@@ -109,6 +110,7 @@ print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
 
 
 
