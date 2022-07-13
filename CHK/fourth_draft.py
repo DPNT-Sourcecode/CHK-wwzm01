@@ -1,5 +1,6 @@
 
 def main(skus):
+
     product_amounts = find_total_values(skus) #fn finds the amount of each product
     if product_amounts == -1: 
         return -1 #returns -1 if illegal input is found
@@ -8,17 +9,18 @@ def main(skus):
 
 
 def find_total_values(skus):
-    products = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
+    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
     product_amounts = {} #create a running total of the total amount of each item in basket
     for s in skus:
-        if s in products:
+        if s in product_prices:
             if s in product_amounts:
                 product_amounts[s] += 1
             else:
                 product_amounts[s] = 1
         else:
             return -1   #if an incorrect input has been entered return -1
-    for p in products:
+    for p in product_prices:
         if p not in product_amounts:
             product_amounts[p] = 0 #add all the products that have not been found yet with amount 0
     return product_amounts
@@ -55,7 +57,7 @@ def special_offer_A(product_amounts):
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
 
-def special_offer_for_price(product, product_amounts, special_offer, product_price, special_price):
+def special_offer_for(product, product_amounts, special_offer, product_price, special_price):
     cost = 0
     if product_amounts[product] >= special_offer: # if any special offers for A
         cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of 3 for A which requires special price
@@ -67,7 +69,7 @@ def special_offer_for_price(product, product_amounts, special_offer, product_pri
 def buy_get_free(product, product_amounts, special_offer, product_price, buy, get_free):
     product_amounts[product] = (product_amounts[product] - int(product_amounts["F"]/3))
 
-print(special_offer("A", {"A":10}, 3, 50, 130))
+print(special_offer_for("A", {"A":10}, 3, 50, 130))
 
 # print(main("AAAA"))
 # print(main("AAAAA"))
@@ -83,3 +85,4 @@ print(special_offer("A", {"A":10}, 3, 50, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
