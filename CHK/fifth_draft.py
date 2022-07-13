@@ -79,9 +79,16 @@ def work_out_cost(product_amounts, product_prices):
 
 def special_offer_for_multiple(product_amounts, product_prices, multiple, price):
     cost = 0
+    #find out total amount of products in special offer
     total_amount = product_amounts['S'] + product_amounts['T'] + product_amounts['X'] + product_amounts['Y'] + product_amounts['Z']
+
+    #does special offer apply?
     if total_amount >= multiple:
+
+        #find out how many multiples
         multiple_amount = int(total_amount/multiple)
+
+        #work out cost when deal applied
         cost += multiple_amount * price
         amount_to_subtract = multiple_amount * multiple
 
@@ -115,9 +122,6 @@ def special_offer_for_multiple(product_amounts, product_prices, multiple, price)
     return cost
 
 
-# print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}, 45, 3, 45))
-# print(special_offer_for_multiple({'S':0, 'T':0, 'X':0, 'Y':0, 'Z':3}, 45, 3, 45))
-# print(special_offer_for_multiple({'S':0, 'T':0, 'X':0, 'Y':0, 'Z':4}, 45, 3, 45))
 
 
 
@@ -156,7 +160,7 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # print(main("AAAAA"))
 # print(main("AAAAAAAA"))
 print(main("STTXXXYYZZAAA"))
-print(main("ZZZ"))
+print(main("ZZ"))
 # print(main("FFFFFFFF"))
 # print(main("ABCD")) #should output 115
 # print(main("ABBBCD")) #should output 160

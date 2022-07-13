@@ -5,7 +5,7 @@
 def checkout(skus):
     #catologue of product prices
     product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
-    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":20,"T":20,"U":40,"V":50,"W":20,"X":17,"Y":20,"Z":21}
 
     #fn finds the amount of each product
     product_amounts = find_total_values(skus, product_prices) 
@@ -71,6 +71,7 @@ def work_out_cost(product_amounts, product_prices):
     total_cost += special_offer_for("P", product_amounts, product_prices["P"], 5, 200)
     total_cost += special_offer_for("Q", product_amounts, product_prices["Q"], 3, 80)
     total_cost += special_offer_for("V", product_amounts, product_prices["V"], 3, 130, 2, 90)
+    total_cost += special_offer_for_multiple(product_amounts, product_prices, 3, 45)
     product_done = 'ABHKPQV'
 
     # then we can simple add up the totals of the remaining products
@@ -79,7 +80,53 @@ def work_out_cost(product_amounts, product_prices):
             total_cost += product_amounts[p] * product_prices[p] 
     return total_cost
 
-    
+def special_offer_for_multiple(product_amounts, product_prices, multiple, price):
+    cost = 0
+    #find out total amount of products in special offer
+    total_amount = product_amounts['S'] + product_amounts['T'] + product_amounts['X'] + product_amounts['Y'] + product_amounts['Z']
+
+    #does special offer apply?
+    if total_amount >= multiple:
+
+        #find out how many multiples
+        multiple_amount = int(total_amount/multiple)
+
+        #work out cost when deal applied
+        cost += multiple_amount * price
+        amount_to_subtract = multiple_amount * multiple
+
+        #now we need to subtract multiple_amount items from the products in the product_amounts dict, in order of highest cost first
+        if amount_to_subtract >= product_amounts['Z']:
+            amount_to_subtract -= product_amounts['Z']
+            product_amounts['Z'] = 0
+            if amount_to_subtract >= product_amounts['S']:
+                amount_to_subtract -= product_amounts['S']
+                product_amounts['S'] = 0
+                if amount_to_subtract >= product_amounts['T']:
+                    amount_to_subtract -= product_amounts['T']
+                    product_amounts['T'] = 0
+                    if amount_to_subtract >= product_amounts['Y']:
+                        amount_to_subtract -= product_amounts['Y']
+                        product_amounts['Y'] = 0
+                        if amount_to_subtract >= product_amounts['X']:
+                            amount_to_subtract -= product_amounts['X']
+                            product_amounts['X'] = 0
+                        else:
+                            product_amounts['X'] -= amount_to_subtract
+                    else:
+                        product_amounts['Y'] -= amount_to_subtract
+                else:
+                    product_amounts['T'] -= amount_to_subtract
+            else:
+                product_amounts['S'] -= amount_to_subtract
+        else:
+            product_amounts['Z'] -= amount_to_subtract
+
+    return cost
+
+
+
+
 
 
 def special_offer_for(product, product_amounts, product_price, special_offer, special_price, special_offer_2=None, special_price_2=None):
