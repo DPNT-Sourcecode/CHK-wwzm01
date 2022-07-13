@@ -112,16 +112,14 @@ def special_offer_for_multiple(product_amounts, product_prices, multiple, price)
         else:
             product_amounts['Z'] -= amount_to_subtract
 
+    pass
+
+
+print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}, 45, 3, 45))
+print(special_offer_for_multiple({'S':1, 'T':0, 'X':0, 'Y':0, 'Z':4}, 45, 3, 45))
 
 
 
-
-                
-                
-
-
-
-print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}))
 
 def special_offer_for(product, product_amounts, product_price, special_offer, special_price, special_offer_2=None, special_price_2=None):
     cost = 0
@@ -167,4 +165,5 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
+
 
