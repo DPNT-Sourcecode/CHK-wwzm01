@@ -59,24 +59,42 @@ def special_offer_A(product_amounts):
 
 def special_offer_for(product, product_amounts, product_price, special_offer, special_price, special_offer_2=None, special_price_2=None):
     cost = 0
-    if product_amounts[product] >= special_offer: # if we need to apply any special 
-        cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of 3 for A which requires special price
-        product_amounts[product] = product_amounts[product] % special_offer
-        if special_offer_2:
-            if product_amounts[product] >= special_offer_2:
-                cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of 3 for A which requires special price
-                cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
-            else:
-                cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+
+    #do we need to apply special_offer?
+    if product_amounts[product] >= special_offer: 
+        cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of special_offer for product which requires special price
+        product_amounts[product] = product_amounts[product] % special_offer #find remaining products after special_offer applied
+
+        #do we have special_offer_2?
+        if special_offer_2: 
+
+            cost += special_offer_for(product, product_amounts, product_price, special_offer_2, special_price_2)
+
+            # #do we need to apply special_offer_2? 
+            # if product_amounts[product] >= special_offer_2: 
+            #     cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of special_offer_2 for product which requires special price
+            #     cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
+            # else:
+            #     cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+
+        #no special_offer_2, just add extra products 
         else:
             cost += product_amounts[product] % special_offer * product_price #also add any individual As on top
+
+    #not applying special_offer
     else:
+
+        #do we have special_offer_2?
         if special_offer_2:
-            if product_amounts[product] >= special_offer_2:
-                cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of 3 for A which requires special price
-                cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
-            else:
-                cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+
+            cost += special_offer_for(product, product_amounts, product_price, special_offer_2, special_price_2)
+
+            # #do we need to apply special_offer_2? 
+            # if product_amounts[product] >= special_offer_2:
+            #     cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of 3 for A which requires special price
+            #     cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
+            # else:
+            #     cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
         else:
             cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
@@ -100,6 +118,7 @@ print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
 
 
 
