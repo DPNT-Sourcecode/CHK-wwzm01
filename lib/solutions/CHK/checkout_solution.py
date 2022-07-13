@@ -4,7 +4,7 @@
 # skus = unicode string
 def checkout(skus):
     #catologue of product prices
-    product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
+    product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":70,"L":90,
     "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":20,"T":20,"U":40,"V":50,"W":20,"X":17,"Y":20,"Z":21}
 
     #fn finds the amount of each product
@@ -67,7 +67,7 @@ def work_out_cost(product_amounts, product_prices):
     total_cost += special_offer_for("A", product_amounts, product_prices["A"], 5, 200, 3, 130)
     total_cost += special_offer_for("B", product_amounts, product_prices["B"], 2, 45)
     total_cost += special_offer_for("H", product_amounts, product_prices["H"], 10, 80, 5, 45)
-    total_cost += special_offer_for("K", product_amounts, product_prices["K"], 2, 150)
+    total_cost += special_offer_for("K", product_amounts, product_prices["K"], 2, 120)
     total_cost += special_offer_for("P", product_amounts, product_prices["P"], 5, 200)
     total_cost += special_offer_for("Q", product_amounts, product_prices["Q"], 3, 80)
     total_cost += special_offer_for("V", product_amounts, product_prices["V"], 3, 130, 2, 90)

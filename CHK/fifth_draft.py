@@ -171,7 +171,3 @@ print(main("ZZ"))
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
-
-
-
-
