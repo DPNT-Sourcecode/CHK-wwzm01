@@ -5,7 +5,7 @@ def main(skus):
     product_amounts = find_total_values(skus, product_prices) #fn finds the amount of each product
     if product_amounts == -1: 
         return -1 #returns -1 if illegal input is found
-    # total_cost = work_out_cost(product_amounts) #fn works out the total checkout value of the items
+    total_cost = work_out_cost(product_amounts, product_prices) #fn works out the total checkout value of the items
     return total_cost
 
 
@@ -44,8 +44,21 @@ def buy_get_free(product, product_amounts, buy, get_free):
     return product_amounts
 
 
-def work_out_cost(product_amounts):
+def work_out_cost(product_amounts, product_prices):
     total_cost = 0
+    total_cost += special_offer_for("A", product_amounts, product_prices["A"], 5, 200, 3, 130)
+    total_cost += special_offer_for("B", product_amounts, product_prices["B"], 2, 45)
+    total_cost += special_offer_for("H", product_amounts, product_prices["H"], 10, 80, 5, 45)
+    total_cost += special_offer_for("K", product_amounts, product_prices["K"], 2, 150)
+    total_cost += special_offer_for("P", product_amounts, product_prices["P"], 5, 200)
+    total_cost += special_offer_for("Q", product_amounts, product_prices["Q"], 3, 80)
+    total_cost += special_offer_for("V", product_amounts, product_prices["V"], 3, 130, 2, 90)
+    product_done = 'ABHKPQV'
+    for p in product_amounts:
+        if p not in product_done:
+            total_cost += product_amounts[p] * product_prices[p] 
+    return total_cost
+
 
 #     if product_amounts["A"] >= 5: # if any special offers for A
 #         total_cost += int(product_amounts["A"]/5) * 200 #work out how many multiples of 3 for A which requires special price
@@ -114,4 +127,5 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # print(main("AAABBBECD")) #should output 280
 print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
 
