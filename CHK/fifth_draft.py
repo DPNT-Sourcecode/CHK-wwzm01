@@ -2,7 +2,7 @@
 def main(skus):
     #catologue of product prices
     product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
-    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":20,"T":20,"U":40,"V":50,"W":20,"X":17,"Y":20,"Z":21}
 
     #fn finds the amount of each product
     product_amounts = find_total_values(skus, product_prices) 
@@ -86,7 +86,6 @@ def special_offer_for_multiple(product_amounts, product_prices, multiple, price)
         amount_to_subtract = multiple_amount * multiple
 
         #now we need to subtract multiple_amount items from the products in the product_amounts dict, in order of highest cost first
-
         if amount_to_subtract >= product_amounts['Z']:
             amount_to_subtract -= product_amounts['Z']
             product_amounts['Z'] = 0
@@ -156,7 +155,8 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # print(main("AAAA"))
 # print(main("AAAAA"))
 # print(main("AAAAAAAA"))
-print(main("STTXXXYYZZ"))
+print(main("STTXXXYYZZAAA"))
+print(main("ZZZ"))
 # print(main("FFFFFFFF"))
 # print(main("ABCD")) #should output 115
 # print(main("ABBBCD")) #should output 160
@@ -167,6 +167,7 @@ print(main("STTXXXYYZZ"))
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
+
 
 
 
