@@ -109,4 +109,3 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
         else:
             cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
-

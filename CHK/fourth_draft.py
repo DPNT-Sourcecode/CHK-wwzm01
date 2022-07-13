@@ -123,7 +123,3 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
-
-
-
-
