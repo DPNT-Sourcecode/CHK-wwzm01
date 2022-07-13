@@ -25,7 +25,11 @@ def find_total_values(skus, product_prices):
             product_amounts[p] = 0 #add all the products that have not been found yet with amount 0
     
     # here we need to apply all the buy and get free offers to remove items that aren't being charged
-
+    product_amounts = buy_get_free('E', product_amounts, 2, 'B')
+    product_amounts = buy_get_free('F', product_amounts, 2, 'F')
+    product_amounts = buy_get_free('N', product_amounts, 3, 'M')
+    product_amounts = buy_get_free('R', product_amounts, 3, 'Q')
+    product_amounts = buy_get_free('U', product_amounts, 3, 'U')
 
     return product_amounts
     
@@ -39,9 +43,10 @@ def buy_get_free(product, product_amounts, buy, get_free):
         product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/buy) , 0)
     return product_amounts
 
-print(buy_get_free("A", {"A":7, "Q":4}, 2, "Q"))
-# def work_out_cost(product_amounts):
-#     total_cost = 0
+
+def work_out_cost(product_amounts):
+    total_cost = 0
+
 #     if product_amounts["A"] >= 5: # if any special offers for A
 #         total_cost += int(product_amounts["A"]/5) * 200 #work out how many multiples of 3 for A which requires special price
 #         product_amounts["A"] = product_amounts["A"] % 5
@@ -93,7 +98,7 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
             cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
 
-print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
+# print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 
 # print(main("AAAA"))
 # print(main("AAAAA"))
@@ -107,5 +112,6 @@ print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 # print(main("AAABBCD")) #should output 210
 # print(main("AAABBECD")) #should output 250
 # print(main("AAABBBECD")) #should output 280
-# print(main("AAABBBEEEEEEEEECD")) #should output 525
+print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
