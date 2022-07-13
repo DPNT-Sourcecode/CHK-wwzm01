@@ -68,6 +68,7 @@ def work_out_cost(product_amounts, product_prices):
     total_cost += special_offer_for("P", product_amounts, product_prices["P"], 5, 200)
     total_cost += special_offer_for("Q", product_amounts, product_prices["Q"], 3, 80)
     total_cost += special_offer_for("V", product_amounts, product_prices["V"], 3, 130, 2, 90)
+    total_cost += special_offer_for_multiple(product_amounts, product_prices, 3, 45)
     product_done = 'ABHKPQV'
 
     # then we can simple add up the totals of the remaining products
@@ -112,11 +113,12 @@ def special_offer_for_multiple(product_amounts, product_prices, multiple, price)
         else:
             product_amounts['Z'] -= amount_to_subtract
 
-    pass
+    return cost
 
 
-print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}, 45, 3, 45))
-print(special_offer_for_multiple({'S':1, 'T':0, 'X':0, 'Y':0, 'Z':4}, 45, 3, 45))
+# print(special_offer_for_multiple({'S':1, 'T':2, 'X':3, 'Y':2, 'Z':2}, 45, 3, 45))
+# print(special_offer_for_multiple({'S':0, 'T':0, 'X':0, 'Y':0, 'Z':3}, 45, 3, 45))
+# print(special_offer_for_multiple({'S':0, 'T':0, 'X':0, 'Y':0, 'Z':4}, 45, 3, 45))
 
 
 
@@ -154,7 +156,7 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # print(main("AAAA"))
 # print(main("AAAAA"))
 # print(main("AAAAAAAA"))
-# print(main("AAAAAAAAAAA"))
+print(main("STTXXXYYZZ"))
 # print(main("FFFFFFFF"))
 # print(main("ABCD")) #should output 115
 # print(main("ABBBCD")) #should output 160
@@ -165,5 +167,6 @@ def special_offer_for(product, product_amounts, product_price, special_offer, sp
 # # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEEFFFFFNNNMCUUD")) #should output 
 # print(main("AAAEBB2CD")) #should output -1
+
 
 
