@@ -32,15 +32,14 @@ def find_total_values(skus, product_prices):
 
 def buy_get_free(product, product_amounts, buy, get_free):
     if product==get_free:
-        if product_amounts[product] >= buy:
-            product_amounts[product] = (product_amounts[product] - int(product_amounts[product]/buy))
+        if product_amounts[product] >= buy+1:
+            product_amounts[product] = (product_amounts[product] - int(product_amounts[product]/(buy+1)))
 
     else:
-        if product_amounts[product] >= buy+1:
-            product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/(buy+1)) , 0)
+        product_amounts[get_free] = max(product_amounts[get_free] - int(product_amounts[product]/buy) , 0)
     return product_amounts
 
-print(buy_get_free("A", {"A":5, "Q":3}, 2, "A"))
+print(buy_get_free("A", {"A":7, "Q":4}, 2, "Q"))
 # def work_out_cost(product_amounts):
 #     total_cost = 0
 #     if product_amounts["A"] >= 5: # if any special offers for A
@@ -110,7 +109,3 @@ print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
-
-
-
-
