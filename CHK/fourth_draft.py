@@ -118,7 +118,3 @@ print(special_offer_for("A", {"A":2}, 50, 5, 200, 3, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
-
-
-
-
