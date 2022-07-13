@@ -1,16 +1,16 @@
 
 def main(skus):
-
-    product_amounts = find_total_values(skus) #fn finds the amount of each product
+    product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
+    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+    product_amounts = find_total_values(skus, product_prices) #fn finds the amount of each product
     if product_amounts == -1: 
         return -1 #returns -1 if illegal input is found
     # total_cost = work_out_cost(product_amounts) #fn works out the total checkout value of the items
     return total_cost
 
 
-def find_total_values(skus):
-    product_prices = {"A":50,"B":30,"C":20,"D":15,"E":40,"F":10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,
-    "M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+def find_total_values(skus, product_prices):
+
     product_amounts = {} #create a running total of the total amount of each item in basket
     for s in skus:
         if s in product_prices:
@@ -57,19 +57,31 @@ def special_offer_A(product_amounts):
         cost_A += product_amounts["A"] * 50 #if less than 3 As, just work out individual 
     return cost_A
 
-def special_offer_for(product, product_amounts, special_offer, product_price, special_price):
+def special_offer_for(product, product_amounts, product_price, special_offer, special_price, special_offer_2=None, special_price_2=None):
     cost = 0
-    if product_amounts[product] >= special_offer: # if any special offers for A
+    if product_amounts[product] >= special_offer: # if we need to apply any special 
         cost += int(product_amounts[product]/special_offer) * special_price #work out how many multiples of 3 for A which requires special price
-        cost += product_amounts[product] % special_offer * product_price #also add any individual As on top
+        product_amounts[product] = product_amounts[product] % special_offer
+        if special_offer_2:
+            if product_amounts[product] >= special_offer_2:
+                cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of 3 for A which requires special price
+                cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
+            else:
+                cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+        else:
+            cost += product_amounts[product] % special_offer * product_price #also add any individual As on top
     else:
-        cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
+        if product_amounts[product] >= special_offer_2:
+            cost += int(product_amounts[product]/special_offer_2) * special_price_2 #work out how many multiples of 3 for A which requires special price
+            cost += product_amounts[product] % special_offer_2 * product_price #also add any individual As on top
+        else:
+            cost += product_amounts[product] * product_price #if less than 3 As, just work out individual 
     return cost
 
 def buy_get_free(product, product_amounts, special_offer, product_price, buy, get_free):
     product_amounts[product] = (product_amounts[product] - int(product_amounts["F"]/3))
 
-print(special_offer_for("A", {"A":10}, 3, 50, 130))
+print(special_offer_for("A", {"A":4}, 50, 5, 200))
 
 # print(main("AAAA"))
 # print(main("AAAAA"))
@@ -85,4 +97,5 @@ print(special_offer_for("A", {"A":10}, 3, 50, 130))
 # print(main("AAABBBECD")) #should output 280
 # print(main("AAABBBEEEEEEEEECD")) #should output 525
 # print(main("AAAEBBZCD")) #should output -1
+
 
